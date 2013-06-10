@@ -13,20 +13,19 @@ var path;
 server = http.createServer(function (req, res) {
 	
 	path = url.parse(req.url);
-	//filePath = path;
-	console.log(path.pathname);
+	filePath = "." + path.pathname + ".html";
+	console.log(filePath);
 
-	fs.readFile(path.pathname, encode, function(err, file) {
+	fs.readFile(filePath, encode, function(err, file) {
 	  if (err) {
 	  	console.log("error");
 	  	res.writeHead(200, {'Content-Type':'text/plain'});
-	  	res.write("hello")
+	  	res.write(filePath);
 	  	res.end();
 	  	return;
 	  }
 
-	res.writeHead(200, {'Content-Type':'text/application'});
-	console.log(work);
+	res.writeHead(200, {'Content-Type':'text/html'});
 	res.write(file);
 	res.end();
     });
